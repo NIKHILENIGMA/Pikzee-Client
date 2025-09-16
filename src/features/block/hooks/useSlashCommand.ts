@@ -53,7 +53,7 @@ export const useSlashCommand = (editor: Editor | null) => {
       };
     } else {
       // (Optional) quick sanity log
-      console.warn("SlashCommand extension not found in defaultExtensions");
+      return;
     }
   }, [editor, dispatch]);
 

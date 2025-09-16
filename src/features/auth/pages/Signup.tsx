@@ -1,53 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, type ChangeEvent, type FC, type FormEvent } from "react";
+import { useState, type FC } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
-interface SignupForm {
-  firstName: "";
-  lastName: "";
-  email: "";
-  password: "";
-}
+// interface SignupForm {
+//   firstName: "";
+//   lastName: "";
+//   email: "";
+//   password: "";
+// }
 
 const Signup: FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<SignupForm>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const response = await fetch("http://localhost:3000/api/v1/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-
-    console.log(data);
-    navigate("/auth/login");
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
@@ -76,7 +45,7 @@ const Signup: FC = () => {
           <hr className="flex-grow" />
         </div>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <Label
@@ -89,8 +58,8 @@ const Signup: FC = () => {
                 id="firstName"
                 name="firstName"
                 type="text"
-                value={formData.firstName}
-                onChange={handleChange}
+                // value={formData.firstName}
+                // onChange={handleChange}
                 placeholder="First Name"
                 className="w-full"
               />
@@ -106,8 +75,8 @@ const Signup: FC = () => {
                 id="lastName"
                 name="lastName"
                 type="text"
-                value={formData.lastName}
-                onChange={handleChange}
+                // value={formData.lastName}
+                // onChange={handleChange}
                 placeholder="Last Name"
                 className="mt-1 w-full"
               />
@@ -121,8 +90,8 @@ const Signup: FC = () => {
               id="email"
               name="email"
               type="email"
-              value={formData.email}
-              onChange={handleChange}
+              // value={formData.email}
+              // onChange={handleChange}
               placeholder="yourname@company.com"
               className="mt-1 w-full"
             />
@@ -147,8 +116,8 @@ const Signup: FC = () => {
               <Input
                 id="password"
                 name="password"
-                value={formData.password}
-                onChange={handleChange}
+                // value={formData.password}
+                // onChange={handleChange}
                 type={visible ? "text" : "password"}
                 placeholder="Enter your password"
                 className="mt-1 w-full"

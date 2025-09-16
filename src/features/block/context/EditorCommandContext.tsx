@@ -103,9 +103,6 @@ const commandReducer = (
  */
 const EditorCommandProvider: FC<EditorCommandContextProps> = ({ children }) => {
   const [state, dispatch] = useReducer(commandReducer, initialState);
-
-  console.log("current state:", state);
-
   // Execute the command for the selected item
   const executeCommand = (item: CommandItem, editor: Editor) => {
     item.command({ editor, range: state.range });
