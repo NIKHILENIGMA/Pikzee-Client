@@ -9,9 +9,9 @@
         "lint:stylelint": "stylelint '**/*.{css,scss}'",
         "format:check": "prettier --check .",
         "format:fix": "prettier --write .",
-        "dev": "vite",
-        "build": "tsc -b && vite build",
-        "preview": "vite preview"
+        "dev": "vite --mode development",
+        "build": "tsc -b && vite build --mode production",
+        "preview": "vite preview --mode production"
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.14",
