@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -22,10 +23,22 @@ export default defineConfig(({ mode }) => {
 
     return {
         plugins: [react(), tailwindcss()],
+        test: {
+            globals: true,
+            environment: 'jsdom',
+            setupFiles: './src/setupTests.ts',
+            include: ['src/**/*.{test,spec}.{js,ts,tsx}'],
+            coverage: {
+                reporter: ['text', 'json', 'html']
+            }
+        },
         server: serverConfig,
         preview: serverConfig,
         build: {
-            minify: true
+            minify: true,
+            rollupOptions: {
+                external: [/.*\.(test|spec)\.(js|ts|tsx)$/] // Exclude test files from the build
+            }
         },
         resolve: {
             alias: {

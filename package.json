@@ -11,7 +11,8 @@
         "format:fix": "prettier --write .",
         "dev": "vite --mode development",
         "build": "tsc -b && vite build --mode production",
-        "preview": "vite preview --mode production"
+        "preview": "vite preview --mode production",
+        "test": "vitest --mode test"
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.14",
@@ -63,6 +64,8 @@
         "@commitlint/config-conventional": "^19.8.1",
         "@eslint/js": "^9.30.1",
         "@tailwindcss/typography": "^0.5.16",
+        "@testing-library/jest-dom": "^6.8.0",
+        "@testing-library/react": "^16.3.0",
         "@types/node": "^24.1.0",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
@@ -73,6 +76,7 @@
         "eslint-plugin-react-refresh": "^0.4.20",
         "globals": "^16.3.0",
         "husky": "^9.1.7",
+        "jsdom": "^27.0.0",
         "lint-staged": "^16.1.6",
         "prettier": "3.6.2",
         "stylelint": "^16.24.0",
@@ -81,6 +85,7 @@
         "tw-animate-css": "^1.3.6",
         "typescript": "~5.8.3",
         "typescript-eslint": "^8.35.1",
-        "vite": "^7.0.4"
+        "vite": "^7.0.4",
+        "vitest": "^3.2.4"
     }
 }
