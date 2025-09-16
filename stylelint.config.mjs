@@ -3,8 +3,8 @@ export default {
     extends: ['stylelint-config-standard', 'stylelint-config-tailwindcss'],
     rules: {
         'lightness-notation': 'number',
-        "hue-degree-notation": "number",
-        "color-function-notation": "modern",
+        'hue-degree-notation': 'number',
+        'color-function-notation': 'modern',
         'at-rule-no-unknown': [
             true,
             {
