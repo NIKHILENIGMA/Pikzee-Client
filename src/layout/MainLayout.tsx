@@ -1,17 +1,17 @@
-import { type FC } from "react";
-import { Footer, Header } from "../components";
-import { Outlet } from "react-router";
+import { type FC } from 'react'
+import { Footer, Header } from '../components'
+import { Outlet } from 'react-router'
 
 const MainLayout: FC = () => {
-  return (
-    <>
-      <Header />
-      <main className="">
-        <Outlet />
-      </main>
-      <Footer />
-    </>
-  );
-};
+    return (
+        <>
+            <Header />
+            <main className="">
+                <Outlet />
+            </main>
+            <Footer />
+        </>
+    )
+}
 
-export default MainLayout;
+export default MainLayout

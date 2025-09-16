@@ -1,10 +1,10 @@
-import { useReducer, type FC, type ReactNode } from "react";
-import type { Editor } from "@tiptap/react";
-import { EditorCommandContext } from "../hooks/useEditorCommand";
-import type { CommandAction, CommandItem, CommandState } from "../types/blocks";
+import { useReducer, type FC, type ReactNode } from 'react'
+import type { Editor } from '@tiptap/react'
+import { EditorCommandContext } from '../hooks/useEditorCommand'
+import type { CommandAction, CommandItem, CommandState } from '../types/blocks'
 
 export interface EditorCommandContextProps {
-  children: ReactNode;
+    children: ReactNode
 }
 
 /**
@@ -13,13 +13,13 @@ export interface EditorCommandContextProps {
  * query input, selected item index, and other relevant properties.
  */
 const initialState: CommandState = {
-  isOpen: false,
-  query: "",
-  selectedIndex: 0,
-  items: [],
-  range: { from: 0, to: 0 },
-  position: { x: 0, y: 0 },
-};
+    isOpen: false,
+    query: '',
+    selectedIndex: 0,
+    items: [],
+    range: { from: 0, to: 0 },
+    position: { x: 0, y: 0 }
+}
 
 /**
  * Reducer function that manages the command menu state transitions.
@@ -41,45 +41,39 @@ const initialState: CommandState = {
  * ```
  */
 
-const commandReducer = (
-  state: CommandState,
-  action: CommandAction
-): CommandState => {
-  switch (action.type) {
-    case "OPEN_MENU":
-      return {
-        ...state,
-        isOpen: true,
-        items: action.payload.items,
-        range: action.payload.range,
-      };
-    case "CLOSE_MENU":
-      return {
-        ...state,
-        isOpen: false,
-        query: "", // Reset the query when closing the menu
-        selectedIndex: 0, // Reset the selected index when closing the menu
-        range: { from: 0, to: 0 }, // Reset the range when closing the menu
-      };
-    case "SET_QUERY":
-      return { ...state, query: action.payload, selectedIndex: 0 };
-    case "SET_SELECTED_INDEX":
-      return {
-        ...state,
-        selectedIndex: Math.max(
-          0,
-          Math.min(action.payload, state.items.length - 1)
-        ), // Wrap the selected index within the bounds of the items array for navigation
-      };
-    case "FILTER_ITEM":
-      return { ...state, items: action.payload, selectedIndex: 0 };
+const commandReducer = (state: CommandState, action: CommandAction): CommandState => {
+    switch (action.type) {
+        case 'OPEN_MENU':
+            return {
+                ...state,
+                isOpen: true,
+                items: action.payload.items,
+                range: action.payload.range
+            }
+        case 'CLOSE_MENU':
+            return {
+                ...state,
+                isOpen: false,
+                query: '', // Reset the query when closing the menu
+                selectedIndex: 0, // Reset the selected index when closing the menu
+                range: { from: 0, to: 0 } // Reset the range when closing the menu
+            }
+        case 'SET_QUERY':
+            return { ...state, query: action.payload, selectedIndex: 0 }
+        case 'SET_SELECTED_INDEX':
+            return {
+                ...state,
+                selectedIndex: Math.max(0, Math.min(action.payload, state.items.length - 1)) // Wrap the selected index within the bounds of the items array for navigation
+            }
+        case 'FILTER_ITEM':
+            return { ...state, items: action.payload, selectedIndex: 0 }
 
-    case 'SET_POSITION':
-      return { ...state, position: action.payload };
-    default:
-      return state;
-  }
-};
+        case 'SET_POSITION':
+            return { ...state, position: action.payload }
+        default:
+            return state
+    }
+}
 
 /**
  * Provider component that manages the editor command context state and provides
@@ -102,49 +96,45 @@ const commandReducer = (
  * ```
  */
 const EditorCommandProvider: FC<EditorCommandContextProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(commandReducer, initialState);
-  // Execute the command for the selected item
-  const executeCommand = (item: CommandItem, editor: Editor) => {
-    item.command({ editor, range: state.range });
-    dispatch({ type: "CLOSE_MENU" });
-  };
-
-  // Handle navigation up  //e.g. keyboard arrow up
-  const navigateUp = () => {
-    dispatch({
-      type: "SET_SELECTED_INDEX",
-      payload: state.selectedIndex - 1,
-    });
-  };
-
-  // Handle navigation down  //e.g. keyboard arrow down
-  const navigateDown = () => {
-    dispatch({
-      type: "SET_SELECTED_INDEX",
-      payload: state.selectedIndex + 1,
-    });
-  };
-
-  // Handle selection of the current item
-  const selectCurrent = (editor: Editor) => {
-    if (state.items[state.selectedIndex]) {
-      executeCommand(state.items[state.selectedIndex], editor);
+    const [state, dispatch] = useReducer(commandReducer, initialState)
+    // Execute the command for the selected item
+    const executeCommand = (item: CommandItem, editor: Editor) => {
+        item.command({ editor, range: state.range })
+        dispatch({ type: 'CLOSE_MENU' })
     }
-  };
 
-  const value = {
-    state,
-    dispatch,
-    executeCommand,
-    navigateUp,
-    navigateDown,
-    selectCurrent,
-  };
-  return (
-    <EditorCommandContext.Provider value={value}>
-      {children}
-    </EditorCommandContext.Provider>
-  );
-};
+    // Handle navigation up  //e.g. keyboard arrow up
+    const navigateUp = () => {
+        dispatch({
+            type: 'SET_SELECTED_INDEX',
+            payload: state.selectedIndex - 1
+        })
+    }
 
-export default EditorCommandProvider;
+    // Handle navigation down  //e.g. keyboard arrow down
+    const navigateDown = () => {
+        dispatch({
+            type: 'SET_SELECTED_INDEX',
+            payload: state.selectedIndex + 1
+        })
+    }
+
+    // Handle selection of the current item
+    const selectCurrent = (editor: Editor) => {
+        if (state.items[state.selectedIndex]) {
+            executeCommand(state.items[state.selectedIndex], editor)
+        }
+    }
+
+    const value = {
+        state,
+        dispatch,
+        executeCommand,
+        navigateUp,
+        navigateDown,
+        selectCurrent
+    }
+    return <EditorCommandContext.Provider value={value}>{children}</EditorCommandContext.Provider>
+}
+
+export default EditorCommandProvider
