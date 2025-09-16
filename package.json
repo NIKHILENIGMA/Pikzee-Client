@@ -6,6 +6,7 @@
     "scripts": {
         "prepare": "husky",
         "lint:eslint": "eslint",
+        "lint:stylelint": "stylelint '**/*.{css,scss}'",
         "format:check": "prettier --check .",
         "format:fix": "prettier --write .",
         "dev": "vite",
@@ -72,6 +73,9 @@
         "globals": "^16.3.0",
         "husky": "^9.1.7",
         "prettier": "3.6.2",
+        "stylelint": "^16.24.0",
+        "stylelint-config-standard": "^39.0.0",
+        "stylelint-config-tailwindcss": "^1.0.0",
         "tw-animate-css": "^1.3.6",
         "typescript": "~5.8.3",
         "typescript-eslint": "^8.35.1",
