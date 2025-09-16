@@ -29,7 +29,27 @@ export default defineConfig(({ mode }) => {
             setupFiles: './src/setupTests.ts',
             include: ['src/**/*.{test,spec}.{js,ts,tsx}'],
             coverage: {
-                reporter: ['text', 'json', 'html']
+                reporter: ['json', 'html'],
+                include: ['src/**/*.{ts,tsx}'],
+                exclude: [
+                    'src/**/*.d.ts',
+                    'src/**/index.{ts,tsx}',
+                    'src/**/types.{ts,tsx}',
+                    'coverage/**',
+                    'node_modules/**',
+                    'test/**',
+                    'tests/**',
+                    'dist/**',
+                    'build/**',
+                    '**/*.config.{ts,js}',
+                    'src/setupTests.ts'
+                ],
+                thresholds: {
+                    statements: 80,
+                    branches: 80,
+                    functions: 80,
+                    lines: 80
+                }
             }
         },
         server: serverConfig,
