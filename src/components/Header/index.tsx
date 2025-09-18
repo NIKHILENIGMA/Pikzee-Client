@@ -1,23 +1,20 @@
 import { type FC } from 'react'
-import { Link, NavLink } from 'react-router'
-import { NAV_LINKS } from '../../constants'
+import { Link } from 'react-router'
+// import { NAV_LINKS } from '../../shared/constants'
 import { ModeToggle } from '../theme/mode-toggle'
-import { useAuthContext } from '@/features/auth/hooks/useAuthContext'
-import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarTrigger } from '@/components/ui/menubar'
+// import { useAuthContext } from '@/features/auth/hooks/useAuthContext'
+// import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarTrigger } from '@/components/ui/menubar'
 
 const Header: FC = () => {
-    const { user, isAuthenticated, loggedOut } = useAuthContext()
-    const handleLogout = async () => {
-        await fetch('http://localhost:3000/api/v1/auth/logout', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-
-        loggedOut()
-    }
+    // const handleLogout = async () => {
+    //     await fetch('http://localhost:3000/api/v1/auth/logout', {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         credentials: 'include'
+    //     })
+    // }
 
     return (
         <header className="w-full bg-transparent fixed top-0 z-20 text-secondary-foreground">
@@ -30,18 +27,18 @@ const Header: FC = () => {
                     </Link>
                 </h1>
                 <nav className="space-x-4">
-                    {NAV_LINKS.map((link) => (
+                    {/* {NAV_LINKS.map((link) => (
                         <NavLink
                             key={link.to}
                             to={link.to}
                             className={({ isActive }) => `hover:text-primary/50 ${isActive ? 'text-primary' : ''}`}>
                             {link.label}
                         </NavLink>
-                    ))}
+                    ))} */}
                 </nav>
                 <ModeToggle />
 
-                {user !== null && isAuthenticated ? (
+                {/* {user !== null && isAuthenticated ? (
                     <div className="flex items-center space-x-4">
                         <Menubar>
                             <MenubarMenu>
@@ -95,7 +92,7 @@ const Header: FC = () => {
                             Sign Up
                         </Link>
                     </div>
-                )}
+                )} */}
             </div>
         </header>
     )
