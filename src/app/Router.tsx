@@ -1,8 +1,6 @@
 import { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import { Home, About, Service, NotFound } from '../pages'
 import { MainLayout } from '../layout'
-import { LoginPage, SignupPage } from '../features/auth'
 import EditorPage from '@/features/block/pages/Editor'
 
 const router = createBrowserRouter([
@@ -12,19 +10,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <Home />
+                lazy: () => import('./routes/home').then((module) => ({ Component: module.default }))
             },
             {
                 path: 'about',
-                element: <About />
-            },
-            {
-                path: 'contact',
-                element: <div>Contact Page</div>
-            },
-            {
-                path: 'services',
-                element: <Service />
+                lazy: () => import('./routes/about').then((module) => ({ Component: module.default }))
             }
         ]
     },
@@ -33,11 +23,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'login',
-                element: <LoginPage />
+                lazy: () => import('./routes/auth/login').then((module) => ({ Component: module.default }))
             },
             {
                 path: 'signup',
-                element: <SignupPage />
+                lazy: () => import('./routes/auth/signup').then((module) => ({ Component: module.default }))
             }
         ]
     },
@@ -47,12 +37,12 @@ const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <NotFound />
+        lazy: () => import('./routes/not-found').then((module) => ({ Component: module.default }))
     }
 ])
 
-const Router: FC = () => {
+const AppRouter: FC = () => {
     return <RouterProvider router={router} />
 }
 
-export default Router
+export default AppRouter
