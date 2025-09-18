@@ -2,16 +2,11 @@ import { Suspense, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ErrorBoundary } from 'react-error-boundary'
 
+import { ThemeProvider } from '@/components/theme/theme-provider'
+import { queryConfig } from '@/lib/react-query'
+
 type AppProviderProps = {
     children: React.ReactNode
-}
-
-const queryConfig = {
-    queries: {
-        refetchOnWindowFocus: false, // Disable refetch on window focus
-        retry: false, // Disable automatic retries
-        staleTime: 1000 * 60
-    }
 }
 
 const MainFallback = () => {
@@ -28,7 +23,13 @@ const AppProvider = ({ children }: AppProviderProps) => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <ErrorBoundary FallbackComponent={MainFallback}>
-                <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+                <QueryClientProvider client={queryClient}>
+                    <ThemeProvider
+                        defaultTheme="dark"
+                        storageKey="content-app-theme">
+                        {children}
+                    </ThemeProvider>
+                </QueryClientProvider>
             </ErrorBoundary>
         </Suspense>
     )
