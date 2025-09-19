@@ -1,5 +1,6 @@
-import { type FC } from 'react'
 import { motion } from 'motion/react'
+import { type FC } from 'react'
+
 import { AuroraBackground } from '@/components/shared/AuroraBackground'
 
 const Home: FC = () => {

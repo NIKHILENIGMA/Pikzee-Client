@@ -1,6 +1,7 @@
 import type { Editor } from '@tiptap/core'
-import { useEditorCommand } from '../hooks/useEditorCommand'
 import { Command } from 'cmdk'
+
+import { useEditorCommand } from '../hooks/useEditorCommand'
 
 interface SlashCommandMenuProps {
     editor: Editor

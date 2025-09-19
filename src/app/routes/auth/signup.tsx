@@ -1,10 +1,11 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { useState, type FC } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { LuEye, LuEyeClosed } from 'react-icons/lu'
 import { Link } from 'react-router'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 // interface SignupForm {
 //   firstName: "";

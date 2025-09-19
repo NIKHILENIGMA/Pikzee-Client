@@ -1,10 +1,12 @@
 // src/components/editor/Editor.tsx
-import { useEffect } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
+import { useEffect } from 'react'
+
+import EditorCommandProvider from '../context/EditorCommandContext'
 import { defaultExtensions } from '../extensions/extensions'
 import { useSlashCommand } from '../hooks/useSlashCommand'
 import '../styles/prosemirror.css'
-import EditorCommandProvider from '../context/EditorCommandContext'
+
 import SlashCommandMenu from './SlashCommandMenu'
 
 export const EditorCore = () => {

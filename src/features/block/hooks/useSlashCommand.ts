@@ -1,7 +1,9 @@
 import type { Editor } from '@tiptap/core'
 import { useEffect } from 'react'
-import { useEditorCommand } from './useEditorCommand'
+
 import type { CommandItem, SlashRenderProps } from '../types/blocks'
+
+import { useEditorCommand } from './useEditorCommand'
 
 export const useSlashCommand = (editor: Editor | null) => {
     const { state, dispatch, selectCurrent, navigateUp, navigateDown, executeCommand } = useEditorCommand()

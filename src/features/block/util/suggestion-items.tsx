@@ -1,7 +1,6 @@
 // src/lib/suggestion-items.tsx
-import { Type, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Code, Image, Minus, CheckSquare } from 'lucide-react'
-
 import type { Editor, Range } from '@tiptap/core'
+import { Type, Heading1, Heading2, Heading3, List, ListOrdered, Quote, Code, Image, Minus, CheckSquare } from 'lucide-react'
 
 interface SuggestionItem {
     title: string

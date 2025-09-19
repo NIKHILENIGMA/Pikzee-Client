@@ -1,5 +1,5 @@
-import { type ComponentType } from 'react'
 import type { Editor, Range } from '@tiptap/react'
+import { type ComponentType } from 'react'
 
 export interface CommandState {
     isOpen: boolean

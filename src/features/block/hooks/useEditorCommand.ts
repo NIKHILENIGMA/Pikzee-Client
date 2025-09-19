@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+
 import type { EditorCommandContextType } from '../types/blocks'
 
 /**

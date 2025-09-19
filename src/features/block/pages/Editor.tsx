@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+
 import { Editor } from '../components/Editor'
 
 const EditorPage: FC = () => {

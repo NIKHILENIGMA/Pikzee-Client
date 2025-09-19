@@ -1,7 +1,9 @@
 import { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import { MainLayout } from '../layout'
+
 import EditorPage from '@/features/block/pages/Editor'
+
+import { MainLayout } from '../layout'
 
 const router = createBrowserRouter([
     {

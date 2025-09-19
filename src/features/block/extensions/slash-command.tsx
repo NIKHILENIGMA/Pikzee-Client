@@ -1,7 +1,8 @@
 import { Extension } from '@tiptap/core'
 import Suggestion from '@tiptap/suggestion'
-import { getSuggestionItems } from '../util/suggestion-items'
+
 import type { CommandItem, SlashRenderProps } from '../types/blocks'
+import { getSuggestionItems } from '../util/suggestion-items'
 
 interface SlashCommandOptions {
     onOpen?: (props: SlashRenderProps) => void

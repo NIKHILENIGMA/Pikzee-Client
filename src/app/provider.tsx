@@ -1,5 +1,5 @@
-import { Suspense, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Suspense, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { ThemeProvider } from '@/components/theme/theme-provider'

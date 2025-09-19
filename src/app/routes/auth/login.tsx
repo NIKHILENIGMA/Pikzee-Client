@@ -1,12 +1,12 @@
 import { useState, type ChangeEvent, type FC, type FormEvent } from 'react'
 import { FcGoogle } from 'react-icons/fc'
-import { Link, useNavigate } from 'react-router'
-import { LuEye } from 'react-icons/lu'
-import { LuEyeClosed } from 'react-icons/lu'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
 import { HiOutlineArrowRight } from 'react-icons/hi'
+import { LuEye, LuEyeClosed } from 'react-icons/lu'
+import { Link, useNavigate } from 'react-router'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 interface LoginForm {
     email: ''

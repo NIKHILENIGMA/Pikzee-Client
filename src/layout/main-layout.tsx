@@ -1,6 +1,7 @@
 import { type FC } from 'react'
-import { Footer, Header } from '@/components'
 import { Outlet } from 'react-router'
+
+import { Footer, Header } from '@/components'
 
 const MainLayout: FC = () => {
     return (
