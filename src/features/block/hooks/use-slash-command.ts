@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import type { CommandItem, SlashRenderProps } from '../types/blocks'
 
-import { useEditorCommand } from './useEditorCommand'
+import { useEditorCommand } from './use-editor-command'
 
 export const useSlashCommand = (editor: Editor | null) => {
     const { state, dispatch, selectCurrent, navigateUp, navigateDown, executeCommand } = useEditorCommand()

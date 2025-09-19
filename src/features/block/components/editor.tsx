@@ -2,9 +2,9 @@
 import { EditorContent, useEditor } from '@tiptap/react'
 import { useEffect } from 'react'
 
-import EditorCommandProvider from '../context/EditorCommandContext'
+import EditorCommandProvider from '../context/editor-command-context'
 import { defaultExtensions } from '../extensions/extensions'
-import { useSlashCommand } from '../hooks/useSlashCommand'
+import { useSlashCommand } from '../hooks/use-slash-command'
 import '../styles/prosemirror.css'
 
 import SlashCommandMenu from './slash-command-menu'

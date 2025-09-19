@@ -1,7 +1,7 @@
 import type { Editor } from '@tiptap/react'
 import { useReducer, type FC, type ReactNode } from 'react'
 
-import { EditorCommandContext } from '../hooks/useEditorCommand'
+import { EditorCommandContext } from '../hooks/use-editor-command'
 import type { CommandAction, CommandItem, CommandState } from '../types/blocks'
 
 export interface EditorCommandContextProps {
