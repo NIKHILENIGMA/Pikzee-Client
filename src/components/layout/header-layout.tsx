@@ -1,10 +1,15 @@
 import { type FC } from 'react'
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 
-// import { NAV_LINKS } from '../../shared/constants'
 import { ModeToggle } from '../theme/mode-toggle'
 // import { useAuthContext } from '@/features/auth/hooks/useAuthContext'
 // import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarTrigger } from '@/components/ui/menubar'
+
+const NAV_LINKS = [
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'About' },
+    { to: '/contact', label: 'Contact' }
+]
 
 const Header: FC = () => {
     // const handleLogout = async () => {
@@ -28,14 +33,14 @@ const Header: FC = () => {
                     </Link>
                 </h1>
                 <nav className="space-x-4">
-                    {/* {NAV_LINKS.map((link) => (
+                    {NAV_LINKS.map((link) => (
                         <NavLink
                             key={link.to}
                             to={link.to}
                             className={({ isActive }) => `hover:text-primary/50 ${isActive ? 'text-primary' : ''}`}>
                             {link.label}
                         </NavLink>
-                    ))} */}
+                    ))}
                 </nav>
                 <ModeToggle />
 
