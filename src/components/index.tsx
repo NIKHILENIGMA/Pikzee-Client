@@ -1,4 +1,4 @@
-import Footer from './Footer'
-import Header from './Header'
+import MainLayout from './layout/main-layout'
+import AuroraBackground from './shared/aurora-background'
 
-export { Header, Footer }
+export { MainLayout, AuroraBackground }
