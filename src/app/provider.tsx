@@ -3,7 +3,7 @@ import { Suspense, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import { ThemeProvider } from '@/components/theme/theme-provider'
-import { queryConfig } from '@/lib/react-query'
+import { queryConfig } from '@/shared/lib/react-query'
 
 type AppProviderProps = {
     children: React.ReactNode
