@@ -53,12 +53,12 @@ export default tseslint.config([
             'check-file/filename-naming-convention': [
                 'error',
                 {
-                    '**/*.{jsx,tsx}': 'KEBAB_CASE',
-                    '**/*.{js,ts}': 'KEBAB_CASE'
+                    '**/*.{ts,tsx}': 'KEBAB_CASE'
                 },
                 {
+                    ignoreMiddleExtensions: true,
                     // Optional: Specify an ignore pattern if needed
-                    ignore: ['**/node_modules/**', '**/dist/**']
+                    ignoreWords: ['index', 'vite.config', 'eslintrc', 'config', 'global', 'declaration']
                 }
             ]
         },
