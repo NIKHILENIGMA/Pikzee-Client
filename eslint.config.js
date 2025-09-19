@@ -6,6 +6,7 @@ import tseslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
+import checkFile from 'eslint-plugin-check-file'
 
 export default tseslint.config([
     globalIgnores(['dist', 'node_modules', 'build', 'coverage']),
@@ -23,7 +24,8 @@ export default tseslint.config([
             globals: globals.browser
         },
         plugins: {
-            import: importPlugin
+            import: importPlugin,
+            'check-file': checkFile
         },
         rules: {
             'no-console': 'error',
@@ -47,7 +49,28 @@ export default tseslint.config([
                     alphabetize: { order: 'asc', caseInsensitive: true },
                     'newlines-between': 'always'
                 }
+            ],
+            'check-file/filename-naming-convention': [
+                'error',
+                {
+                    '**/*.{jsx,tsx}': 'KEBAB_CASE',
+                    '**/*.{js,ts}': 'KEBAB_CASE'
+                },
+                {
+                    // Optional: Specify an ignore pattern if needed
+                    ignore: ['**/node_modules/**', '**/dist/**']
+                }
             ]
+        },
+        settings: {
+            react: {
+                version: 'detect'
+            },
+            'import/resolver': {
+                node: {
+                    extensions: ['.js', '.jsx', '.ts', '.tsx']
+                }
+            }
         }
     }
 ])
