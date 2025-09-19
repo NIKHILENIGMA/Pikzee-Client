@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
-import { MainLayout } from '../layout'
+import { MainLayout } from '@/components'
 
 const router = createBrowserRouter([
     {
