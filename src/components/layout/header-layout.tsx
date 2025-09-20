@@ -1,3 +1,4 @@
+import { SignedIn, UserButton, SignInButton, SignedOut } from '@clerk/clerk-react'
 import { type FC } from 'react'
 import { Link, NavLink } from 'react-router'
 
@@ -43,6 +44,13 @@ const Header: FC = () => {
                     ))}
                 </nav>
                 <ModeToggle />
+
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
+                <SignedOut>
+                    <SignInButton />
+                </SignedOut>
 
                 {/* {user !== null && isAuthenticated ? (
                     <div className="flex items-center space-x-4">

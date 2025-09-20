@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
-import { MainLayout } from '@/components'
+import { MainLayout, DashboardLayout } from '@/components'
 
 const router = createBrowserRouter([
     {
@@ -28,6 +28,16 @@ const router = createBrowserRouter([
             {
                 path: 'signup',
                 lazy: () => import('./routes/auth/signup').then((module) => ({ Component: module.default }))
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />,
+        children: [
+            {
+                path: '',
+                element: <div>Dashboard Home</div>
             }
         ]
     },
