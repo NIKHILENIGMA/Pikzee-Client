@@ -4,8 +4,6 @@ import { Button } from '@/components/ui/button'
 import { Mail } from '@/shared/assets/icons'
 import { FcGoogle, FaGithub } from '@/shared/assets/icons'
 
-// import { SocialLoginButtons } from './social-login-buttons'
-
 interface ChooseLoginProps {
     emailBtnText: string
     googleText?: string
