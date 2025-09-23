@@ -16,6 +16,7 @@ interface FormFieldProps {
     required: boolean
     type?: string
     icon?: LucideIcon
+    shouldReset?: boolean
 }
 
 const FormField: FC<FormFieldProps> = ({ label, name, placeholder, type = 'text', icon: Icon, register, errors, required }) => {
