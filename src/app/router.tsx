@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         ]
     },
     {
+        path: '/sso-callback',
+        lazy: () => import('./routes/auth/sso-callback').then((module) => ({ Component: module.default }))
+    },
+    {
         path: '/dashboard',
         element: <DashboardLayout />,
         children: [
