@@ -10,7 +10,7 @@ import SignupVerificationCode from './signup-verification-code'
 type SignupStep = 'initial' | 'email' | 'code'
 
 const SignupForm: FC = () => {
-    const [step, setStep] = useState<SignupStep>('code')
+    const [step, setStep] = useState<SignupStep>('initial')
     const { loadingProvider, handleGoogleSignup, handleGithubSignup } = useOAuth()
 
     return (
