@@ -42,6 +42,18 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <div>Dashboard Home</div>
+            },
+            {
+                path: 'docs',
+                element: <div>Dashboard Docs</div>
+            },
+            {
+                path: 'magic-editor',
+                element: <div>Dashboard Magic Editor</div>
+            },
+            {
+                path: 'integrations',
+                element: <div>Dashboard Integrations</div>
             }
         ]
     },

@@ -31,7 +31,10 @@ const AppProvider = ({ children }: AppProviderProps) => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <ErrorBoundary FallbackComponent={MainFallback}>
-                <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+                <ClerkProvider
+                    publishableKey={PUBLISHABLE_KEY}
+                    signInUrl="/auth/login"
+                    signUpUrl="/auth/signup">
                     <QueryClientProvider client={queryClient}>
                         <ThemeProvider
                             defaultTheme="dark"
