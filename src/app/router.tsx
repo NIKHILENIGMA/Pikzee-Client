@@ -57,8 +57,8 @@ const router = createBrowserRouter([
                 lazy: () => import('./routes/dashboard/magic-editor').then((module) => ({ Component: module.default }))
             },
             {
-                path: 'integrations',
-                element: <div>Integrations</div>
+                path: 'media-scheduler',
+                lazy: () => import('./routes/dashboard/media-scheduler').then((module) => ({ Component: module.default }))
             }
         ]
     },
