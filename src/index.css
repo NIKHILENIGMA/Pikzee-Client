@@ -188,3 +188,9 @@ body {
         }
     }
 }
+
+.minimal-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+    background: hsl(0 0% 0% / 0%);
+}
