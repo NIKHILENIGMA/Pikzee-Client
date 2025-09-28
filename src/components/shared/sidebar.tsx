@@ -1,30 +1,29 @@
 import { useClerk, useUser } from '@clerk/clerk-react'
 import { Dock, Home, LogOut, MagnetIcon, Settings, Sparkles } from 'lucide-react'
 import type { FC } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { cn } from '@/shared/lib/utils'
 
 import Logo from '../logo/logo'
 import { Button } from '../ui/button'
 
 import { ModeToggle } from './../theme/mode-toggle'
 
-interface NavLink {
+interface NavItem {
     to: string
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
     label: string
 }
 
-const NAV_LINKS: NavLink[] = [
+const NAV_LINKS: NavItem[] = [
     {
         to: '/dashboard',
         icon: Home,
         label: 'Home'
     },
     {
-        to: '/dashboard/docs',
+        to: '/dashboard/documents',
         icon: Dock,
         label: 'Projects'
     },
@@ -41,9 +40,12 @@ const NAV_LINKS: NavLink[] = [
 ]
 
 const Sidebar: FC = () => {
-    const { user } = useUser()
+    const { user, isLoaded } = useUser()
     const navigate = useNavigate()
     const { signOut } = useClerk()
+    if (!isLoaded) return null
+
+    const userInitials = `${user?.firstName?.charAt(0) || ''}${user?.lastName?.charAt(0) || ''}`
 
     const handleLogout = async () => {
         await signOut()
@@ -51,31 +53,33 @@ const Sidebar: FC = () => {
     }
 
     return (
-        <aside className={cn('w-16 bg-sidebar p-4 flex flex-col items-center justify-between')}>
+        <aside className={'w-[5%] h-screen bg-sidebar sticky top-0 p-4 flex flex-col items-center justify-between z-50'}>
             <Logo
-                logoPath="../../../public/dummylogo.jpg"
+                logoPath="../../../dummylogo.jpg"
                 classes="rounded-lg"
                 redirectTo={'/dashboard'}
             />
             <nav className="mt-10 flex flex-col items-center space-y-4 h-[80%]">
-                {NAV_LINKS.map((link: NavLink, idx: number) => (
-                    <Link
+                {NAV_LINKS.map((link: NavItem, idx: number) => (
+                    <NavLink
                         key={link.to + idx}
                         to={link.to}
-                        className="hover:bg-primary- p-2 rounded w-full text-center">
+                        end={link.to === '/dashboard'}
+                        className={({ isActive }: { isActive: boolean }) =>
+                            `${isActive ? 'text-primary' : 'text-foreground/80'} p-3 rounded-lg hover:bg-primary/20 transition-colors cursor-pointer`
+                        }>
                         {link.icon && <link.icon />}
-                    </Link>
+                    </NavLink>
                 ))}
             </nav>
             <div className="mb-4 flex flex-col items-center">
                 <div className="w-full flex justify-center">
                     <Popover>
-                        <PopoverTrigger>
+                        <PopoverTrigger asChild>
                             <Button
                                 variant={'profile'}
                                 size={'icon'}>
-                                {user?.firstName?.split('')[0]}
-                                {user?.lastName?.split('')[0]}
+                                {userInitials}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent
