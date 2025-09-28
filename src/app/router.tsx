@@ -2,6 +2,7 @@ import { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
 import { MainLayout, DashboardLayout } from '@/components'
+import ProtectedRoute from '@/features/auth/components/protected-route'
 
 const router = createBrowserRouter([
     {
@@ -9,7 +10,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             {
-                path: '',
+                index: true,
                 lazy: () => import('./routes/home').then((module) => ({ Component: module.default }))
             },
             {
@@ -28,39 +29,39 @@ const router = createBrowserRouter([
             {
                 path: 'signup',
                 lazy: () => import('./routes/auth/signup').then((module) => ({ Component: module.default }))
+            },
+            {
+                path: 'sso-callback',
+                lazy: () => import('./routes/auth/sso-callback').then((module) => ({ Component: module.default }))
             }
         ]
-    },
-    {
-        path: '/sso-callback',
-        lazy: () => import('./routes/auth/sso-callback').then((module) => ({ Component: module.default }))
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: (
+            <ProtectedRoute>
+                <DashboardLayout />
+            </ProtectedRoute>
+        ),
         children: [
             {
-                path: '',
-                element: <div>Dashboard Home</div>
+                index: true,
+                lazy: () => import('./routes/dashboard/dashboard').then((module) => ({ Component: module.default }))
             },
             {
-                path: 'docs',
-                element: <div>Dashboard Docs</div>
+                path: 'documents',
+                lazy: () => import('./routes/dashboard/document').then((module) => ({ Component: module.default }))
             },
             {
                 path: 'magic-editor',
-                element: <div>Dashboard Magic Editor</div>
+                lazy: () => import('./routes/dashboard/magic-editor').then((module) => ({ Component: module.default }))
             },
             {
                 path: 'integrations',
-                element: <div>Dashboard Integrations</div>
+                element: <div>Integrations</div>
             }
         ]
     },
-    // {
-    //     path: '/editor',
-    //     element: <EditorPage />
-    // },
     {
         path: '*',
         lazy: () => import('./routes/not-found').then((module) => ({ Component: module.default }))

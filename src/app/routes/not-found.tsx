@@ -1,5 +1,7 @@
 import type { FC } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
+
+import { Button } from '@/components/ui/button'
 
 const NotFound: FC = () => {
     const navigate = useNavigate()
@@ -9,8 +11,8 @@ const NotFound: FC = () => {
     }
 
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300">
-            <section className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center gap-4">
+        <main className="flex flex-col items-center justify-center min-h-screen bg-background px-4">
+            <section className="bg-card rounded-xl shadow-lg p-8 flex flex-col items-center text-foreground gap-4">
                 <svg
                     className="w-20 h-20 text-red-400 mb-2"
                     fill="none"
@@ -30,20 +32,20 @@ const NotFound: FC = () => {
                         d="M16 32L32 16M32 32L16 16"
                     />
                 </svg>
-                <h1 className="text-4xl font-bold text-gray-800">404</h1>
-                <p className="text-lg text-gray-600">Page Not Found</p>
+                <h1 className="text-4xl font-bold ">404</h1>
+                <p className="text-lg text-foreground/80">Page Not Found</p>
                 <div className="flex gap-3 mt-2">
-                    <Link
-                        to="/"
-                        className="px-6 py-2 bg-red-400 text-white rounded hover:bg-red-500 transition-colors">
+                    <Button
+                        onClick={() => navigate('/')}
+                        variant={'default'}>
                         Go Home
-                    </Link>
-                    <button
+                    </Button>
+                    <Button
                         type="button"
                         onClick={handleGoBack}
-                        className="px-6 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition-colors">
+                        variant={'secondary'}>
                         Go Back
-                    </button>
+                    </Button>
                 </div>
             </section>
         </main>
