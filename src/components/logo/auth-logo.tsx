@@ -4,7 +4,7 @@ const AuthLogo: FC = () => {
     return (
         <div className="absolute top-6 left-6">
             <img
-                src="../../../public/dummylogo.jpg"
+                src="../../../dummylogo.jpg"
                 alt="logo"
                 className="h-6 w-6 rounded"
             />

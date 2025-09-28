@@ -31,7 +31,7 @@ const LoginForm: FC = () => {
     })
 
     return (
-        <div className="relative w-full max-w-md shadow-md rounded-lg p-6 flex flex-col z-50">
+        <div className="relative w-full max-w-md p-6 flex flex-col z-50">
             <div className="text-center mb-6">
                 <h1 className="text-3xl font-semibold">Log in with your account</h1>
             </div>
