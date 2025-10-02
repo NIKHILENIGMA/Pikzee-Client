@@ -2,6 +2,7 @@ import { type FC } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
 import { MainLayout, DashboardLayout } from '@/components'
+import SettingsLayout from '@/components/layout/settings-layout'
 import ProtectedRoute from '@/features/auth/components/protected-route'
 
 const router = createBrowserRouter([
@@ -59,8 +60,20 @@ const router = createBrowserRouter([
             {
                 path: 'media-scheduler',
                 lazy: () => import('./routes/dashboard/media-scheduler').then((module) => ({ Component: module.default }))
+            },
+            {
+                path: 'projects',
+                lazy: () => import('./routes/dashboard/projects').then((module) => ({ Component: module.default }))
             }
         ]
+    },
+    {
+        path: '/settings',
+        element: (
+            <ProtectedRoute>
+                <SettingsLayout />
+            </ProtectedRoute>
+        )
     },
     {
         path: '*',
