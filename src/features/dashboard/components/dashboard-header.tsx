@@ -1,9 +1,11 @@
-import { Grid3X3, List, Plus } from 'lucide-react'
+import { Grid3X3, List } from 'lucide-react'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-// import { Input } from '@/components/ui/input'
+import AddProjectCard from '@/features/dashboard/components/workspace/add-project-card'
 
 const DashboardHeader = () => {
+    const [open, setOpen] = useState<boolean>(false)
     return (
         <header className="border-b-[1px] border-boder py-4 px-3">
             <div className="flex items-center justify-between">
@@ -47,12 +49,11 @@ const DashboardHeader = () => {
                 </div> */}
 
                 {/* New Project Button */}
-                <Button
-                    variant={'default'}
-                    size={'default'}>
-                    <Plus className="h-4 w-4 mr-2" />
-                    New Project
-                </Button>
+                <AddProjectCard
+                    open={open}
+                    setOpen={setOpen}
+                    triggerBtn={true}
+                />
             </div>
         </header>
     )

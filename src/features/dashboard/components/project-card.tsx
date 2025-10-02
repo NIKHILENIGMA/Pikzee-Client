@@ -4,13 +4,16 @@ interface ProjectCardProps {
     title: string
     imageUrl: string
     fileSize?: string
+    onProjectCardClick?: () => void
 }
 
-const ProjectCard: FC<ProjectCardProps> = ({ title, imageUrl, fileSize = '0 MB' }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ title, imageUrl, fileSize = '0 MB', onProjectCardClick }) => {
     return (
-        <article className="bg-card text-white rounded-[0.8rem] overflow-hidden shadow-md w-3/3 md:h-64">
+        <article className="bg-card text-foreground rounded-[0.8rem] overflow-hidden shadow-md w-3/3 md:h-64 cursor-pointer hover:shadow-lg transition-shadow">
             {/* Thumbnail */}
-            <figure className="relative w-full h-[90%]">
+            <figure
+                className="relative w-full h-[90%]"
+                onClick={onProjectCardClick}>
                 <img
                     src={imageUrl}
                     alt={title}
