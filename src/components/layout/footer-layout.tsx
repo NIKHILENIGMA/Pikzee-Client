@@ -1,4 +1,5 @@
 import { type FC } from 'react'
+import { Link } from 'react-router'
 
 const Footer: FC = () => {
     return (
@@ -6,21 +7,21 @@ const Footer: FC = () => {
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
                 <span className="text-sm">&copy; {new Date().getFullYear()} Content App. All rights reserved.</span>
                 <nav className="flex space-x-4 mt-2 md:mt-0">
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         className="hover:underline">
                         Home
-                    </a>
-                    <a
-                        href="/about"
+                    </Link>
+                    <Link
+                        to="/about"
                         className="hover:underline">
                         About
-                    </a>
-                    <a
-                        href="/contact"
+                    </Link>
+                    <Link
+                        to="/contact"
                         className="hover:underline">
                         Contact
-                    </a>
+                    </Link>
                 </nav>
             </div>
         </footer>
