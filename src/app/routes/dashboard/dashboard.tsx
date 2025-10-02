@@ -1,34 +1,38 @@
 import { Plus, MoreHorizontal, Users } from 'lucide-react'
-import type { FC } from 'react'
+import { useState, type FC } from 'react'
+import { useNavigate } from 'react-router'
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-// import { Card } from '@/components/ui/card'
 import { DashboardHeader } from '@/features/dashboard'
 import ProjectCard from '@/features/dashboard/components/project-card'
+import AddProjectCard from '@/features/dashboard/components/workspace/add-project-card'
 
-const PROJECT_CARDS = [
-    {
-        title: 'YouTube Video',
-        imageUrl:
-            'https://plus.unsplash.com/premium_photo-1663040316559-8684ca45d7e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        fileSize: '0 MB'
-    },
-    {
-        title: 'YouTube Video',
-        imageUrl:
-            'https://plus.unsplash.com/premium_photo-1663040316559-8684ca45d7e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        fileSize: '0 MB'
-    },
-    {
-        title: 'YouTube Video',
-        imageUrl:
-            'https://plus.unsplash.com/premium_photo-1663040316559-8684ca45d7e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        fileSize: '0 MB'
-    }
-]
+import PROJECT_CARDS from '../../../../mock/projects.json'
+// const PROJECT_CARDS = [
+//     {
+//         title: 'YouTube Video',
+//         imageUrl:
+//             'https://plus.unsplash.com/premium_photo-1663040316559-8684ca45d7e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//         fileSize: '0 MB'
+//     },
+//     {
+//         title: 'YouTube Video',
+//         imageUrl:
+//             'https://plus.unsplash.com/premium_photo-1663040316559-8684ca45d7e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//         fileSize: '0 MB'
+//     },
+//     {
+//         title: 'YouTube Video',
+//         imageUrl:
+//             'https://plus.unsplash.com/premium_photo-1663040316559-8684ca45d7e9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//         fileSize: '0 MB'
+//     }
+// ]
 
 const Dashboard: FC = () => {
+    const navigate = useNavigate()
+    const [open, setOpen] = useState<boolean>(false)
     return (
         <div className="w-full h-full bg-background text-foreground">
             {/* Header */}
@@ -60,20 +64,21 @@ const Dashboard: FC = () => {
                 {/* Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                     {/* YouTube Video Project */}
-                    {PROJECT_CARDS.map((card, idx) => (
+                    {PROJECT_CARDS.projects.map((project) => (
                         <ProjectCard
-                            key={card.title + idx}
-                            title={card.title}
-                            imageUrl={card.imageUrl}
-                            fileSize={card.fileSize}
+                            key={project.id}
+                            title={project.title}
+                            imageUrl={project.image_url}
+                            fileSize={project.size}
+                            onProjectCardClick={() => {
+                                navigate(`/dashboard/projects`)
+                            }}
                         />
                     ))}
 
-                    {/* New Project Card */}
-                    {/* <Card className="bg-card border-primary border-dashed hover:bg-slate-750 transition-colors cursor-pointer p-8 min-h-[220px] min-w-[220px]">
-                        
-                    </Card> */}
-                    <article className="bg-card text-foreground rounded-[0.8rem] overflow-hidden shadow-md w-3/3 md:h-64">
+                    <article
+                        className="bg-card text-foreground rounded-[0.8rem] overflow-hidden shadow-md w-3/3 md:h-64 cursor-pointer"
+                        onClick={() => setOpen(true)}>
                         <div className="w-full h-full flex items-center justify-center">
                             <div className="text-center">
                                 <div className="w-16 h-16 bg-primary/80 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -83,6 +88,12 @@ const Dashboard: FC = () => {
                             </div>
                         </div>
                     </article>
+
+                    <AddProjectCard
+                        open={open}
+                        setOpen={setOpen}
+                        triggerBtn={false}
+                    />
                 </div>
             </main>
         </div>
