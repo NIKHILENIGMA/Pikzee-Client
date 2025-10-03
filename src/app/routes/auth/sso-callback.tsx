@@ -3,6 +3,8 @@ import { useEffect, type FC } from 'react'
 import { useErrorBoundary } from 'react-error-boundary'
 import { useNavigate } from 'react-router'
 
+import PublicRoute from '@/components/shared/public-route'
+
 const SSOCallback: FC = () => {
     const { isLoaded: signUpLoaded, signUp } = useSignUp()
     const { isLoaded: signInLoaded, signIn } = useSignIn()
@@ -28,10 +30,12 @@ const SSOCallback: FC = () => {
         complete()
     }, [signUpLoaded, signInLoaded, signUp, signIn, navigate, showBoundary])
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-800">Signing you in with SSO...</h2>
-            <p className="text-gray-600">Please wait while we complete your authentication.</p>
-        </div>
+        <PublicRoute redirectTo="/ws">
+            <div className="flex flex-col items-center justify-center min-h-screen bg-background p-4">
+                <h2 className="mb-4 text-2xl font-semibold text-foreground">Signing you in with SSO...</h2>
+                <p className="text-foreground/60">Please wait while we complete your authentication.</p>
+            </div>
+        </PublicRoute>
     )
 }
 
