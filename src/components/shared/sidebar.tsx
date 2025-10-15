@@ -18,22 +18,22 @@ interface NavItem {
 
 const NAV_LINKS: NavItem[] = [
     {
-        to: '/dashboard',
+        to: '/ws',
         icon: Home,
         label: 'Home'
     },
     {
-        to: '/dashboard/documents',
+        to: '/documents',
         icon: Dock,
         label: 'Projects'
     },
     {
-        to: '/dashboard/magic-editor',
+        to: '/magic-editor',
         icon: Sparkles,
         label: 'Magic Editor'
     },
     {
-        to: '/dashboard/media-scheduler',
+        to: '/media-scheduler',
         icon: MagnetIcon,
         label: 'Integrations'
     }
@@ -57,7 +57,7 @@ const Sidebar: FC = () => {
             <Logo
                 logoPath="../../../dummylogo.jpg"
                 classes="rounded-lg"
-                redirectTo={'/dashboard'}
+                redirectTo={'/ws'}
             />
             <nav className="mt-10 flex flex-col items-center space-y-4 h-[80%]">
                 {NAV_LINKS.map((link: NavItem, idx: number) => (
@@ -105,7 +105,7 @@ const Sidebar: FC = () => {
                                     <Button
                                         variant="ghost"
                                         className="w-full flex justify-start"
-                                        onClick={() => navigate('/dashboard/settings')}>
+                                        onClick={() => navigate('/settings')}>
                                         <Settings /> Setting
                                     </Button>
                                     {/* Theme Button */}
