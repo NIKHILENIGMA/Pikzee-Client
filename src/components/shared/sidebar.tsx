@@ -18,22 +18,22 @@ interface NavItem {
 
 const NAV_LINKS: NavItem[] = [
     {
-        to: '/ws',
+        to: '/dashboard',
         icon: Home,
         label: 'Home'
     },
     {
-        to: '/documents',
+        to: '/dashboard/documents',
         icon: Dock,
         label: 'Projects'
     },
     {
-        to: '/magic-editor',
+        to: '/dashboard/magic-editor',
         icon: Sparkles,
         label: 'Magic Editor'
     },
     {
-        to: '/media-scheduler',
+        to: '/dashboard/media-scheduler',
         icon: MagnetIcon,
         label: 'Integrations'
     }
