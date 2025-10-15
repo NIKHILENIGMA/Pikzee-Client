@@ -36,20 +36,14 @@ const router = createBrowserRouter([
             {
                 path: 'projects',
                 lazy: () => import('./routes/dashboard/projects').then((module) => ({ Component: module.default }))
+            },
+            {
+                path: 'settings',
+                element: <SettingsLayout />
             }
         ]
     },
-    {
-        path: '/settings',
-        element: (
-            <ProtectedRoute>
-                <SettingsLayout />
-            </ProtectedRoute>
-        ),
-        children: [
-            // Add your settings routes here
-        ]
-    },
+
     // Public Routes (Unauthenticated users only)
     {
         path: '/',
