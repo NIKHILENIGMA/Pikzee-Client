@@ -5,18 +5,21 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv } from 'vite'
 
-import { EnvSchema, type Env, type EnvMode } from './src/shared/config/env'
+import { envSchema } from './src/shared/config/env'
 
 type ServerConfig = { port: number; open: boolean }
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-    const envMode = mode as EnvMode // e.g 'development', 'production', 'test'
+    const rawEnv = loadEnv(mode, process.cwd(), 'VITE_')
 
-    const rawEnv = loadEnv(envMode, process.cwd(), '') as unknown as Env // NODE_ENV, PORT
-
-    const env = EnvSchema.parse(rawEnv)
-    // console.log('Environment Variables:', env)
+    // Parse using schema
+    const env = envSchema.parse({
+        ENV: rawEnv.VITE_ENV,
+        PORT: rawEnv.VITE_PORT,
+        BACKEND_PROXY: rawEnv.VITE_BACKEND_PROXY,
+        CLERK_PUBLISHABLE_KEY: rawEnv.VITE_CLERK_PUBLISHABLE_KEY
+    })
 
     const serverConfig: ServerConfig = {
         port: env.PORT ? env.PORT : 5173,
