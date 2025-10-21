@@ -1,3 +1,1 @@
-import DashboardHeader from './components/dashboard-header'
-
-export { DashboardHeader }
+export * from './components/workspace'
