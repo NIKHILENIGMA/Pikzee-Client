@@ -39,7 +39,17 @@ const router = createBrowserRouter([
             },
             {
                 path: 'settings',
-                element: <SettingsLayout />
+                element: <SettingsLayout />,
+                children: [
+                    {
+                        index: true,
+                        lazy: () => import('./routes/settings/profile').then((module) => ({ Component: module.default }))
+                    },
+                    {
+                        path: 'plans',
+                        lazy: () => import('./routes/settings/plan').then((module) => ({ Component: module.default }))
+                    }
+                ]
             }
         ]
     },
