@@ -23,7 +23,7 @@ export const useLogin = () => {
 
             if (result.status === 'complete' && result.createdSessionId) {
                 await setActive({ session: result.createdSessionId })
-                navigate('/dashboard')
+                navigate('/ws')
             } else {
                 setFormError('Login failed. Please try again.')
             }
@@ -43,7 +43,7 @@ export const useLogin = () => {
             await signIn.authenticateWithRedirect({
                 strategy: oauthStrategy,
                 redirectUrl: `${window.location.origin}/sso-callback`,
-                redirectUrlComplete: `${window.location.origin}/dashboard/`
+                redirectUrlComplete: `${window.location.origin}/ws/`
             })
         } catch (error) {
             setFormError(`Failed to login with Google. Please try again. ${(error as Error).message}`)
@@ -65,7 +65,7 @@ export const useLogin = () => {
             await signIn.authenticateWithRedirect({
                 strategy: oauthStrategy,
                 redirectUrl: `${window.location.origin}/sso-callback`,
-                redirectUrlComplete: `${window.location.origin}/dashboard/`
+                redirectUrlComplete: `${window.location.origin}/ws/`
             })
         } catch (error) {
             setFormError(`Failed to login with GitHub. Please try again. ${(error as Error).message}`)
