@@ -96,7 +96,7 @@
     --font-sans: plus jakarta sans, sans-serif;
     --font-serif: lora, serif;
     --font-mono: ibm plex mono, monospace;
-    --radius: 1.4rem;
+    --radius: 0.75rem;
     --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 8%);
     --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 8%);
     --shadow-sm: 0px 2px 3px 0px hsl(0 0% 0% / 16%), 0px 1px 2px -1px hsl(0 0% 0% / 16%);
@@ -145,7 +145,7 @@
     --font-sans: plus jakarta sans, sans-serif;
     --font-serif: lora, serif;
     --font-mono: ibm plex mono, monospace;
-    --radius: 1.4rem;
+    --radius: 0.75rem;
     --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 0% / 8%);
     --shadow-xs: 0px 2px 3px 0px hsl(0 0% 0% / 8%);
     --shadow-sm: 0px 2px 3px 0px hsl(0 0% 0% / 16%), 0px 1px 2px -1px hsl(0 0% 0% / 16%);
