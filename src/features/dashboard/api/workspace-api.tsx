@@ -35,3 +35,9 @@ export const getWorkspaceByIdApi = async (workspaceId: string): Promise<Workspac
 
     return response.data
 }
+
+export const getCurrentUserWorkspaceApi = async (): Promise<Workspace[]> => {
+    const response = await client.get<Workspace[]>(`${WORKSPACE_API_BASE}/me`)
+
+    return response.data
+}

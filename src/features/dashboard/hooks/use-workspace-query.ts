@@ -2,7 +2,7 @@ import { queryOptions, useQuery } from '@tanstack/react-query'
 
 import { workspaceKeys } from '@/shared/lib/query-keys'
 
-import { getWorkspaceByIdApi, listWorkspacesApi } from '../api/workspace-api'
+import { getCurrentUserWorkspaceApi, getWorkspaceByIdApi, listWorkspacesApi } from '../api/workspace-api'
 
 const listWorkspacesQueryOptions = () => {
     return queryOptions({
@@ -27,5 +27,18 @@ const getWorkspaceByIdQueryOptions = (id: string) => {
 export const useGetWorkspaceById = (workspaceId: string) => {
     return useQuery({
         ...getWorkspaceByIdQueryOptions(workspaceId)
+    })
+}
+
+export const getCurrentUserWorkspaceQueryOptions = () => {
+    return queryOptions({
+        queryKey: workspaceKeys.detail('current'),
+        queryFn: getCurrentUserWorkspaceApi
+    })
+}
+
+export const useCurrentUserWorkspace = () => {
+    return useQuery({
+        ...getCurrentUserWorkspaceQueryOptions()
     })
 }

@@ -12,18 +12,39 @@ import PROJECT_CARDS from '../../../../../mock/projects.json'
 
 import WorkspaceSetting from './workspace-setting'
 
-const WorkspaceContent: FC = () => {
+type Permission = 'FULL_ACCESS' | 'COMMENT_ONLY' | 'VIEW_ONLY' | 'EDIT'
+
+interface WorkspaceContentProps {
+    id: string
+    name: string
+    slug: string
+    ownerId: string
+    workspaceLogo: string
+    members: {
+        userId: string
+        permission: Permission
+    }[]
+    projects?: {
+        id: string
+        title: string
+        image_url: string
+        size: string
+    }[]
+}
+
+const WorkspaceContent: FC<WorkspaceContentProps> = (workspace) => {
     const navigate = useNavigate()
     const [open, setOpen] = useState<boolean>(false)
     const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false)
+    if (!workspace) return null
 
     return (
         <main className="px-6 py-8">
             {/* Workspace Header */}
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h1 className="text-2xl font-semibold mb-1">Nikhil's Workspace</h1>
-                    <p className="text-slate-400 text-sm">2 Projects (1 Inactive)</p>
+                    <h1 className="text-2xl font-semibold mb-1">{workspace.name}</h1>
+                    {/* <p className="text-slate-400 text-sm">2 Projects (1 Inactive)</p> */}
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -73,7 +94,7 @@ const WorkspaceContent: FC = () => {
                         imageUrl={project.image_url}
                         fileSize={project.size}
                         onProjectCardClick={() => {
-                            navigate(`/dashboard/projects`)
+                            navigate(`/projects`)
                         }}
                     />
                 ))}

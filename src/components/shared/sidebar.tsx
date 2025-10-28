@@ -53,7 +53,7 @@ const Sidebar: FC = () => {
     }
 
     return (
-        <aside className={'w-[5%] h-screen bg-sidebar sticky top-0 p-4 flex flex-col items-center justify-between z-50'}>
+        <aside className={'hidden md:w-[5%] h-screen bg-sidebar sticky top-0 p-4 md:flex flex-col items-center justify-between z-50'}>
             <Logo
                 logoPath="../../../dummylogo.jpg"
                 classes="rounded-lg"

@@ -48,6 +48,10 @@ const router = createBrowserRouter([
                     {
                         path: 'plans',
                         lazy: () => import('./routes/settings/plan').then((module) => ({ Component: module.default }))
+                    },
+                    {
+                        path: 'integration',
+                        lazy: () => import('./routes/settings/integration-hub').then((module) => ({ Component: module.default }))
                     }
                 ]
             }
@@ -87,6 +91,10 @@ const router = createBrowserRouter([
             {
                 path: 'sso-callback',
                 lazy: () => import('./routes/auth/sso-callback').then((module) => ({ Component: module.default }))
+            },
+            {
+                path: 'social/youtube/callback',
+                lazy: () => import('./routes/auth/youtube-callback').then((module) => ({ Component: module.default }))
             }
         ]
     },

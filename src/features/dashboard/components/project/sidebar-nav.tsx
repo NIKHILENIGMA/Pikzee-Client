@@ -1,28 +1,68 @@
-import { ChevronDown, ChevronRight, Folder, FolderOpen, Plus, Trash2 } from 'lucide-react'
+import { ChevronDown, Folder, FolderOpen, Plus, File } from 'lucide-react'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+// import { FcDocument } from 'react-icons/fc'
 import { cn } from '@/shared/lib/utils'
 
-type SidebarItem = {
-    label: string
-    active?: boolean
-    depth: number
-    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+type Node = {
+    name: string
+    folders?: Node[]
 }
 
-const items: SidebarItem[] = [
-    { label: 'Youtube Video', active: true, depth: 0 },
-    { label: 'Footage', depth: 1 },
-    { label: 'Graphics', depth: 1 },
-    { label: 'private', depth: 1 },
-    { label: 'Sound Effects', depth: 1 },
-    { label: 'untitled folder', depth: 1 },
-    { label: 'Recently Deleted', depth: 0, icon: Trash2 }
-] as const
+const folders: Node[] = [
+    {
+        name: 'Home',
+        folders: [
+            {
+                name: 'Movies',
+                folders: [
+                    {
+                        name: 'Avengers',
+                        folders: [
+                            { name: 'Endgame', folders: [{ name: 'timetravel.mp4' }, { name: 'finalbattle.mp4' }] },
+                            { name: 'Infinity War', folders: [] }
+                        ]
+                    },
+                    { name: 'Inception', folders: [] },
+                    { name: 'Interstellar', folders: [] }
+                ]
+            },
+            {
+                name: 'Music',
+                folders: [
+                    { name: 'Rock', folders: [{ name: 'Classic Rock', folders: [] }] },
+                    { name: 'Pop', folders: [] },
+                    { name: 'Hip Hop', folders: [] }
+                ]
+            },
+            {
+                name: 'Audio',
+                folders: [
+                    { name: 'Podcasts', folders: [] },
+                    {
+                        name: 'Audiobooks',
+                        folders: [
+                            { name: 'Fiction', folders: [] },
+                            { name: 'Non-Fiction', folders: [] }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: 'Documents',
+                folders: [
+                    { name: 'Work', folders: [] },
+                    { name: 'Personal', folders: [] }
+                ]
+            }
+        ]
+    }
+]
 
 export function SidebarNav() {
     return (
-        <aside className="hidden w-[260px] shrink-0 border-r border-border bg-(--color-sidebar) text-(--color-sidebar-foreground) md:block">
+        <aside className="hidden w-[260px] shrink-0 border-r border-border bg-sidebar-accent text-sidebar-foreground md:block">
             <div className="flex h-14 items-center justify-between px-3">
                 <div className="text-sm font-medium">Assets</div>
                 <Button
@@ -34,37 +74,55 @@ export function SidebarNav() {
             </div>
 
             <nav className="space-y-1 px-2 pb-3">
-                {items.map((item, idx) => {
-                    const Icon = item.icon ?? (item.depth ? Folder : FolderOpen)
-                    const hasChildren = item.depth === 0 && item.label !== 'Recently Deleted'
-
-                    return (
-                        <button
-                            key={idx}
-                            className={cn(
-                                'group flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm hover:bg-(--color-sidebar-accent)',
-                                item.active && 'bg-(--color-sidebar-accent)'
-                            )}>
-                            {hasChildren ? (
-                                <ChevronDown className="size-4 text-muted-foreground" />
-                            ) : item.depth ? (
-                                <ChevronRight className="size-4 text-muted-foreground" />
-                            ) : (
-                                <span className="w-4" />
-                            )}
-                            <Icon className="size-4" />
-                            <span className={cn('truncate', item.active && 'font-medium')}>{item.label}</span>
-                        </button>
-                    )
-                })}
+                <ul className="ml-4 pl-3 border-l">
+                    {folders.map((folder) => (
+                        <Folders
+                            key={folder.name}
+                            folder={folder}
+                        />
+                    ))}
+                </ul>
             </nav>
-
-            <div className="mt-6 border-t border-(--color-sidebar-border) px-2 pt-3">
-                <div className="mb-2 flex items-center justify-between px-1 text-sm text-muted-foreground">
-                    <span>Collections</span>
-                    <Plus className="size-4" />
-                </div>
-            </div>
         </aside>
+    )
+}
+
+function Folders({ folder }: { folder: Node }) {
+    const [isFolderOpen, setIsFolderOpen] = useState<boolean>(false)
+    const hasChildrens = folder.folders && folder.folders.length > 0
+    return (
+        <li
+            key={folder.name}
+            className="my-1.5">
+            <span className="flex items-center gap-1.5">
+                {hasChildrens && (
+                    <button onClick={() => setIsFolderOpen(!isFolderOpen)}>
+                        <ChevronDown
+                            className={cn('size-4', isFolderOpen ? 'rotate-[-90deg] transition-transform' : 'rotate-[0deg] transition-transform')}
+                        />
+                    </button>
+                )}
+                {hasChildrens ? (
+                    isFolderOpen ? (
+                        <FolderOpen className={cn(!hasChildrens && 'ml-2')} />
+                    ) : (
+                        <Folder className={cn(!hasChildrens && 'ml-2 transform transition-all')} />
+                    )
+                ) : (
+                    <File className="" />
+                )}{' '}
+                {folder.name}
+            </span>
+            {isFolderOpen && folder.folders && folder.folders.length > 0 && (
+                <ul className="ml-2 border-l border-border pl-3">
+                    {folder.folders.map((subfolder) => (
+                        <Folders
+                            key={subfolder.name}
+                            folder={subfolder}
+                        />
+                    ))}
+                </ul>
+            )}
+        </li>
     )
 }
