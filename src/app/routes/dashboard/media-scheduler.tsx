@@ -11,7 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
-import { completeUpload, generateResumableUploadUrl } from '@/features/app-settings/apis/integrate-api'
+import { completeUpload, generateResumableUploadUrl } from '@/features/settings/apis/integrate-api'
 import { VideoIcon, UploadIcon, LibraryIcon } from '@/shared/assets/icons'
 
 const platformLimits = {

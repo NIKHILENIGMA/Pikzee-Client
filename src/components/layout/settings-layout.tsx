@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 
-import SettingsSidebar from '@/features/app-settings/components/setting-sidebar'
+import SettingsSidebar from '@/features/settings/components/setting-sidebar'
 
 export default function SettingsLayout() {
     return (

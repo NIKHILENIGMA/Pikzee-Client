@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { FaYoutube } from 'react-icons/fa'
 
-import { disconnectIntegration, initiateOAuthFlow, integrationStatus } from '@/features/app-settings/apis/integrate-api'
-import { IntegrationCard } from '@/features/app-settings/components/integration/integration-card'
+import { disconnectIntegration, initiateOAuthFlow, integrationStatus } from '@/features/settings/apis/integrate-api'
+import { IntegrationCard } from '@/features/settings/components/integration/integration-card'
 
 export interface ConnectedAccount {
     connected: boolean

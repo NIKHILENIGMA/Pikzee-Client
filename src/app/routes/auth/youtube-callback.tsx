@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import { handleOAuthCallback } from '@/features/app-settings/apis/integrate-api'
+import { handleOAuthCallback } from '@/features/settings/apis/integrate-api'
 
 const YoutubeCallback = () => {
     const navigate = useNavigate()
