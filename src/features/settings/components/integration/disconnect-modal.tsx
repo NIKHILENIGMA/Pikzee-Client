@@ -9,7 +9,7 @@ interface DisconnectModalProps {
     onCancel: () => void
 }
 
-export function DisconnectModal({ isOpen, platform, onConfirm, onCancel }: DisconnectModalProps) {
+export default function DisconnectModal({ isOpen, platform, onConfirm, onCancel }: DisconnectModalProps) {
     if (!isOpen) return null
 
     return (

@@ -7,7 +7,7 @@ interface ConnectedAccountsProps {
     onDisconnect: (accountId: string, platform: string) => void
 }
 
-export function ConnectedAccounts({ accounts, onDisconnect }: ConnectedAccountsProps) {
+export default function ConnectedAccounts({ accounts, onDisconnect }: ConnectedAccountsProps) {
     const platformGradients: Record<string, string> = {
         youtube: 'from-red-600/20 to-red-500/10 border-red-500/30 hover:border-red-500/60',
         linkedin: 'from-blue-600/20 to-blue-500/10 border-blue-500/30 hover:border-blue-500/60',

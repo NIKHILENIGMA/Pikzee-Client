@@ -9,7 +9,7 @@ interface IntegrationCardProps {
     onDisconnect?: () => void
 }
 
-export function IntegrationCard({ isConnected, onConnect, onDisconnect }: IntegrationCardProps) {
+export default function IntegrationCard({ isConnected, onConnect, onDisconnect }: IntegrationCardProps) {
     return (
         <div
             className={cn(
