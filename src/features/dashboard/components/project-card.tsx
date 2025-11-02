@@ -1,5 +1,7 @@
 import { type FC } from 'react'
 
+import ProjectPopover from '@/features/workspace/components/project-popover'
+
 interface ProjectCardProps {
     title: string
     imageUrl: string
@@ -43,17 +45,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, imageUrl, fileSize = '0 MB',
             {/* Footer */}
             <footer className="w-full h-[10%] flex justify-between items-center px-3 py-2 text-gray-400 text-sm">
                 <span>{fileSize}</span>
-                <button
-                    aria-label="More options"
-                    className="hover:text-gray-200 transition">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        className="w-4 h-4">
-                        <path d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
-                    </svg>
-                </button>
+                <ProjectPopover />
             </footer>
         </article>
     )
