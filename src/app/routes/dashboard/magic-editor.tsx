@@ -1,8 +1,8 @@
 import { useState, type FC } from 'react'
 
-import { EditorPanel } from '@/features/magic-editor/components/editor-panel'
-import { LivePreview } from '@/features/magic-editor/components/live-preview'
-import { NavigationHeader } from '@/features/magic-editor/components/navigation-header'
+import { EditorPanel } from '@/features/image-editor/components/editor-panel'
+import { LivePreview } from '@/features/image-editor/components/live-preview'
+import { NavigationHeader } from '@/features/image-editor/components/navigation-header'
 
 export type EditorMode = 'adjustments' | 'ai-enhance' | 'overlays' | 'ai-magic' | 'export'
 
