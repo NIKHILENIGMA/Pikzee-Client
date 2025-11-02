@@ -1,4 +1,4 @@
-import { User, Bell, BarChart3, CreditCard, Receipt, Users, FolderOpen } from 'lucide-react'
+import { User, Bell, BarChart3, CreditCard, Receipt } from 'lucide-react'
 import type { FC } from 'react'
 import { useNavigate } from 'react-router'
 
@@ -16,9 +16,7 @@ const SETTINGS_SIDEBAR_LINKS = [
             { name: 'Usage', icon: BarChart3 },
             { name: 'Integration', icon: Bell },
             { name: 'Plans', icon: CreditCard },
-            { name: 'Billing', icon: Receipt },
-            { name: 'Users', icon: Users },
-            { name: 'Projects', icon: FolderOpen }
+            { name: 'Billing', icon: Receipt }
         ]
     }
 ]
@@ -26,7 +24,7 @@ const SETTINGS_SIDEBAR_LINKS = [
 const SettingsSidebar: FC = () => {
     const navigate = useNavigate()
     return (
-        <div className="w-64 bg-sidebar border-r border-sidebar-border p-4 min-h-screen">
+        <div className="w-52 px-5 py-2 bg-sidebar-accent overflow-hidden border-r border-sidebar-border flex flex-col fixed h-screen">
             {/* Personal Section */}
             <div className="mb-6">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Personal</h3>
@@ -35,6 +33,7 @@ const SettingsSidebar: FC = () => {
                         <Button
                             key={link.name}
                             variant="ghost"
+                            onClick={() => navigate('/settings')}
                             className="w-full justify-start text-sidebar-foreground hover:bg-sidebar-accent">
                             <link.icon className="mr-2 h-4 w-4" />
                             {link.name}
