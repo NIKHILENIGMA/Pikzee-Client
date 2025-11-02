@@ -19,7 +19,7 @@ const router = createBrowserRouter([
             {
                 index: true,
                 path: 'ws',
-                lazy: () => import('./routes/dashboard/dashboard').then((module) => ({ Component: module.default }))
+                lazy: () => import('./routes/workspace/workspace-dashboard').then((module) => ({ Component: module.default }))
             },
             {
                 path: 'documents',
@@ -52,6 +52,10 @@ const router = createBrowserRouter([
                     {
                         path: 'integration',
                         lazy: () => import('./routes/settings/integration-hub').then((module) => ({ Component: module.default }))
+                    },
+                    {
+                        path: 'workspace',
+                        lazy: () => import('./routes/settings/workspace-settings').then((module) => ({ Component: module.default }))
                     }
                 ]
             }
