@@ -4,7 +4,7 @@ import SettingsSidebar from '@/features/settings/components/setting-sidebar'
 
 export default function SettingsLayout() {
     return (
-        <div className="min-h-screen bg-background text-foreground dark">
+        <div className="min-h-screen bg-background text-foreground">
             <div className="flex">
                 {/* Sidebar */}
                 <SettingsSidebar />
