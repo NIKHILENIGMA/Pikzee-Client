@@ -34,8 +34,8 @@ const router = createBrowserRouter([
                 lazy: () => import('./routes/dashboard/media-scheduler').then((module) => ({ Component: module.default }))
             },
             {
-                path: 'projects',
-                lazy: () => import('./routes/dashboard/projects').then((module) => ({ Component: module.default }))
+                path: 'projects/:projectId',
+                lazy: () => import('./routes/workspace/project-management').then((module) => ({ Component: module.default }))
             },
             {
                 path: 'settings',
@@ -56,6 +56,10 @@ const router = createBrowserRouter([
                     {
                         path: 'workspace',
                         lazy: () => import('./routes/settings/workspace-settings').then((module) => ({ Component: module.default }))
+                    },
+                    {
+                        path: 'project',
+                        lazy: () => import('./routes/settings/project-settings').then((module) => ({ Component: module.default }))
                     }
                 ]
             }
