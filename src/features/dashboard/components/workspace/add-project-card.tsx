@@ -4,6 +4,7 @@ import { useState, type FC } from 'react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 interface AddProjectCardProps {
     open: boolean
@@ -13,6 +14,7 @@ interface AddProjectCardProps {
 
 const AddProjectCard: FC<AddProjectCardProps> = ({ open, setOpen, triggerBtn }) => {
     const [projectName, setProjectName] = useState<string>('')
+    const [file] = useState<File | null>(null)
 
     return (
         <Dialog
@@ -28,29 +30,44 @@ const AddProjectCard: FC<AddProjectCardProps> = ({ open, setOpen, triggerBtn }) 
             <DialogContent
                 onEscapeKeyDown={() => setOpen(false)}
                 onPointerDownOutside={() => setOpen(false)}
-                className="max-w-2xl md:w-[600px] sm:w-full">
-                <DialogHeader>
-                    <DialogTitle>Project</DialogTitle>
+                className="min-w-[700px]">
+                <DialogHeader className="h-12 p-2">
+                    <DialogTitle>Add New Project</DialogTitle>
                 </DialogHeader>
-                <div className="flex flex-col items-center gap-6">
-                    {/* Image Placeholder with Input Overlay */}
-                    <div className="relative w-64 h-64 border-2 border-dashed border-card rounded-lg flex items-center justify-center bg-card">
-                        <span className="absolute inset-0 flex items-center justify-center text-foreground pointer-events-none">Add Image</span>
-                        <Input
-                            type="text"
-                            value={projectName}
-                            onChange={(e) => setProjectName(e.target.value)}
-                            placeholder="Enter project name"
-                            className="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 bg-background bg-opacity-80 border border-input rounded px-3 py-2"
-                            style={{ zIndex: 2 }}
-                        />
+                <div className="w-full h-full flex">
+                    <div className="w-1/2 h-full py-2">
+                        <div className="p-2 h-full flex items-center justify-center">
+                            {file ? (
+                                <img
+                                    src={URL.createObjectURL(file)}
+                                    alt="image"
+                                    className="h-full object-cover rounded-md"
+                                />
+                            ) : (
+                                <div className="w-full h-full border-2 border-dashed border-border/50 rounded-md flex flex-col items-center justify-center">
+                                    <span className="text-foreground/80 mb-4">Upload Project Cover Image</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <Button
-                        type="button"
-                        variant="default"
-                        className="w-3/4 max-w-xs">
-                        Create Project
-                    </Button>
+                    <div className="w-1/2 h-full py-2">
+                        <div className="flex flex-col space-y-6 px-8">
+                            <div className="flex flex-col space-y-2">
+                                <Label
+                                    htmlFor="project-name"
+                                    className="text-sm font-medium text-foreground">
+                                    Project Name
+                                </Label>
+                                <Input
+                                    id="project-name"
+                                    placeholder="Enter project name"
+                                    value={projectName}
+                                    onChange={(e) => setProjectName(e.target.value)}
+                                />
+                            </div>
+                            <Button variant={'default'}>Create Project</Button>
+                        </div>
+                    </div>
                 </div>
             </DialogContent>
         </Dialog>
