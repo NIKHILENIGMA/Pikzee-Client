@@ -46,12 +46,14 @@ const WorkspaceSettings: FC = () => {
         workspaceLogo: '',
         members: [
             {
+                id: 'member_user_32xk6cu6zGi6DrkikD1L3c7do16',
                 userId: 'user_32xk6cu6zGi6DrkikD1L3c7do16',
                 name: 'Nikhil',
                 email: 'nikhil@example.com',
                 permission: 'FULL_ACCESS'
             },
             {
+                id: 'member_user_3442DKF54P6zrk4cw0KkivEZVlB',
                 userId: 'user_3442DKF54P6zrk4cw0KkivEZVlB',
                 name: 'John',
                 email: 'john@example.com',

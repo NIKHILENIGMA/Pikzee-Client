@@ -9,16 +9,19 @@ interface ContentHeaderProps {
     noOfProjects: number
     onShowMembers: () => void
     onSettingsOpen: () => void
-    members: {
+    members?: {
         userId: string
         name: string
         email: string
         permission: string
+        avatar?: string
     }[]
 }
 
 const ContentHeader: FC<ContentHeaderProps> = ({ name, noOfProjects, onShowMembers, members }) => {
     const navigate = useNavigate()
+    const displayMembers = members && members.length > 0 ? members.slice(0, 3) : []
+
     return (
         <div className="w-full flex justify-between mb-4 font-medium text-xl">
             <div className="flex flex-col">
@@ -27,59 +30,57 @@ const ContentHeader: FC<ContentHeaderProps> = ({ name, noOfProjects, onShowMembe
             </div>
             <div className="flex items-center">
                 {members && members.length > 0 ? (
-                    <div
-                        className="px-2 flex items-center space-x-2 cursor-pointer"
-                        onClick={onShowMembers}>
-                        {members.slice(0, 3).map((src, i) => {
-                            if (i === 0) {
-                                return (
-                                    <div
-                                        key={i}
-                                        className="w-7 h-7 rounded-full overflow-hidden border-primary border-2.5 z-10">
-                                        <img
-                                            src={members[i].userId}
-                                            alt={`Member ${i + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                )
-                            }
-                            if (i === 1) {
-                                return (
-                                    <div
-                                        key={i}
-                                        className="w-7 h-7 rounded-full overflow-hidden border-primary border-2.5 z-20 -ml-4">
-                                        <img
-                                            src={members[i].userId}
-                                            alt={`Member ${i + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                )
-                            }
-                            return (
-                                <div
-                                    key={i}
-                                    className="w-7 h-7 rounded-full overflow-hidden border-primary border-2.5 z-30 -ml-5">
+                    <>
+                        {displayMembers.map((member, index) => (
+                            <div
+                                key={member.userId}
+                                className="w-7 h-7 rounded-full overflow-hidden border-2 border-border flex-shrink-0 cursor-pointer"
+                                style={{
+                                    zIndex: displayMembers.length - index,
+                                    marginLeft: index === 0 ? 0 : -10
+                                }}
+                                onClick={onShowMembers}
+                                title={member.name}>
+                                {member.avatar ? (
                                     <img
-                                        src={members[i].userId}
-                                        alt={`Member ${i + 1}`}
+                                        src={member.avatar || '/placeholder.svg'}
+                                        alt={member.name}
                                         className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            // Fallback to initials if image fails
+                                            const target = e.target as HTMLImageElement
+                                            target.style.display = 'none'
+                                            const parent = target.parentElement
+                                            if (parent) {
+                                                const initials = member.name
+                                                    .split(' ')
+                                                    .map((n) => n[0])
+                                                    .join('')
+                                                    .toUpperCase()
+                                                parent.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-primary text-primary-foreground text-xs font-semibold">${initials}</div>`
+                                            }
+                                        }}
                                     />
-                                </div>
-                            )
-                        })}
-                    </div>
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center bg-primary text-primary-foreground text-xs font-semibold">
+                                        {member.name
+                                            .split(' ')
+                                            .map((n) => n[0])
+                                            .join('')
+                                            .toUpperCase()}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </>
                 ) : (
-                    <button
-                        type="button"
-                        onClick={onShowMembers}
-                        className="px-2 flex items-center cursor-pointer text-muted-foreground"
-                        aria-label="No members">
-                        {/* simple inline user icon fallback */}
-                        <User className="bg-primary w-7 h-7 rounded-full p-1 shadow text-white" />
-                    </button>
+                    <div
+                        className="w-7 h-7 rounded-full bg-muted flex items-center justify-center border border-primary cursor-pointer hover:bg-muted/80 transition-colors"
+                        onClick={onShowMembers}>
+                        <User className="w-4 h-4 text-muted-foreground" />
+                    </div>
                 )}
+
                 <Button
                     variant={'link'}
                     onClick={() => navigate('/settings/workspace')}>

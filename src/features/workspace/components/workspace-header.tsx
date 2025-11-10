@@ -5,14 +5,25 @@ import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { TabsList, TabsTrigger } from '@/components/ui/tabs'
+import AddProjectCard from '@/features/dashboard/components/workspace/add-project-card'
 
-type ProjectStatus = 'All' | 'Active' | 'Inactive'
+import type { ProjectStatus } from '../types'
 
-const WorkspaceHeader: FC = () => {
+interface WorkspaceHeaderProps {
+    onStatusChange: (status: ProjectStatus) => void
+}
+
+const WorkspaceHeader: FC<WorkspaceHeaderProps> = ({ onStatusChange }) => {
     const [status, setStatus] = useState<ProjectStatus>('All')
+    const [open, setOpen] = useState<boolean>(false)
+
+    const handleStatusChange = (newStatus: ProjectStatus) => {
+        setStatus(newStatus)
+        onStatusChange(newStatus)
+    }
 
     return (
-        <div className="w-full h-12 border-b border-border flex-shrink-0 justify-between items-center px-4 flex">
+        <div className="w-full h-12 border-b border-border flex-shrink-0 justify-between items-center px-10 flex">
             <div className="filters flex space-x-4 items-center">
                 <TabsList>
                     <TabsTrigger value="grid">
@@ -32,7 +43,7 @@ const WorkspaceHeader: FC = () => {
                         align="start">
                         <Select
                             value={status}
-                            onValueChange={(value: ProjectStatus) => setStatus(value)}>
+                            onValueChange={(value: ProjectStatus) => handleStatusChange(value)}>
                             <SelectTrigger className="w-full">
                                 <SelectValue
                                     placeholder="All"
@@ -49,13 +60,23 @@ const WorkspaceHeader: FC = () => {
                 </Popover>
                 <div className=""></div>
             </div>
+
             <div className="actions">
                 <Button
                     variant="outline"
-                    size={'sm'}>
+                    size={'sm'}
+                    onClick={() => {
+                        setOpen(true)
+                    }}>
                     <Plus /> New Project
                 </Button>
             </div>
+
+            <AddProjectCard
+                open={open}
+                setOpen={setOpen}
+                triggerBtn={false}
+            />
         </div>
     )
 }

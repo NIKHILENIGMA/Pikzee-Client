@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import ProjectCard from '@/features/dashboard/components/project-card'
 import AddProjectCard from '@/features/dashboard/components/workspace/add-project-card'
+import ProjectCard from '@/features/workspace/components/project/project-card'
 
 import PROJECT_CARDS from '../../../../../mock/projects.json'
 
@@ -90,8 +90,9 @@ const WorkspaceContent: FC<WorkspaceContentProps> = (workspace) => {
                 {PROJECT_CARDS.projects.map((project) => (
                     <ProjectCard
                         key={project.id}
-                        title={project.title}
-                        imageUrl={project.image_url}
+                        projectName={project.title}
+                        projectStatus="Active"
+                        projectCover={project.image_url}
                         fileSize={project.size}
                         onProjectCardClick={() => {
                             navigate(`/projects`)
