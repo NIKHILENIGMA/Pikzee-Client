@@ -1,3 +1,5 @@
+export type ProjectStatus = 'All' | 'Active' | 'Inactive'
+
 export interface Workspace {
     id: string
     name: string
@@ -5,7 +7,9 @@ export interface Workspace {
     ownerId: string
     workspaceLogo: string
     members: {
+        id: string
         userId: string
+        avatar?: string
         name: string
         email: string
         permission: string
@@ -16,6 +20,7 @@ export interface Workspace {
 export type Project = {
     id: string
     projectName: string
+    projectCoverImage?: string
     status: 'Active' | 'Inactive'
     lastUpdated: string
     createdAt: string
