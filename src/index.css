@@ -193,3 +193,13 @@ body {
     height: 8px;
     background: hsl(0 0% 0% / 0%);
 }
+
+.folder-extended {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-accent);
+    opacity: 0.49;
+    clip-path: path(
+        'M 13,0 L 65,0 A 19.5,15 0,0,1 84.5,10 A 32.5,25 0,0,0 88.4,12 L 93.6,12 L 247,12 A 39,30 0,0,1 260,18 L 260,200 L 0,200 L 0,10 A 13,10 0,0,1 13,0 Z'
+    );
+}
